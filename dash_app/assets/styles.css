@@ -1,0 +1,570 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* THEME VARIABLES */
+.theme--dark {
+  --bg: #020617;
+  --panel: #0b1120;
+  --panel-2: #020617;
+  --text: #e6e9ee;
+  --muted: #c0cad6;
+  --accent: #2072cf;
+  --accent-hover: #2563eb;
+  --border: #1f2937;
+  --shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+}
+
+.theme--light {
+  --bg: #f4f5fb;
+  --panel: #ffffff;
+  --panel-2: #f9fafb;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --border: #e5e7eb;
+  --shadow: 0 18px 35px rgba(148, 163, 184, 0.45);
+}
+
+/* GLOBAL */
+html,
+body {
+  height: 100%;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  transition: background 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.18), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(244, 63, 94, 0.14), transparent 55%);
+}
+
+/* HEADER */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  backdrop-filter: blur(18px);
+  background: linear-gradient(to bottom,
+      rgba(15, 23, 42, 0.92),
+      rgba(15, 23, 42, 0.7),
+      transparent);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.6);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background-image: linear-gradient(120deg, var(--accent), #22c55e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-subtitle {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* language dropdown (react-select-like) */
+.lang-dropdown {
+  width: 160px;
+}
+
+.lang-dropdown .Select-control {
+  background-color: var(--panel-2) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.35) !important;
+  transition: box-shadow 0.2s ease;
+}
+
+.lang-dropdown .Select-control:hover {
+  box-shadow: 0 0 0 2px var(--accent) !important;
+}
+
+/* Dropdown menu panel – glassy & slightly see-through */
+.lang-dropdown .Select-menu-outer {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(236, 72, 153, 0.18), transparent 55%),
+    rgba(2, 6, 23, 0.88) !important;
+  /* dark w/ alpha */
+  border-color: rgba(148, 163, 184, 0.5) !important;
+  backdrop-filter: blur(12px);
+}
+
+.theme--light .lang-dropdown .Select-menu-outer {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.15), transparent 55%),
+    rgba(237, 228, 241, 0.92) !important;
+  border-color: rgba(209, 213, 219, 0.8) !important;
+  backdrop-filter: blur(12px);
+}
+
+.lang-dropdown .Select-value-label {
+  color: var(--text) !important;
+}
+
+/* TOGGLE */
+.toggle {
+  display: flex;
+  align-items: center;
+}
+
+/* LAYOUT */
+.container {
+  max-width: 1380px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+  flex: 1;
+  box-sizing: border-box;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+/* TABS */
+.tabs-content {
+  margin-top: 8px;
+}
+
+.tabs-parent {
+  margin-top: 8px;
+}
+
+.tabs {
+  border-bottom: 2px solid var(--border);
+}
+
+.tab {
+  background: transparent !important;
+  border: none !important;
+  color: var(--muted);
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: -2px;
+  border-bottom: 2px solid transparent !important;
+  transition: color 0.18s ease, border-bottom-color 0.18s ease;
+}
+
+.tab--selected {
+  color: var(--text) !important;
+  border-bottom-color: var(--accent) !important;
+}
+
+/* Stronger tab highlight in light theme */
+.theme--light .tab--selected {
+  color: #1e3a8a !important;
+  /* deep blue text */
+  font-weight: 700 !important;
+  border-bottom-color: #2563eb !important;
+  /* bright blue underline */
+  text-shadow: 0 0 4px rgba(59, 130, 246, 0.25);
+  /* soft glow */
+  border-radius: 6px;
+}
+
+/* Make hover more visible */
+.theme--light .tab:not(.tab--selected):hover {
+  color: #0f172a !important;
+  background: rgba(37, 99, 235, 0.05);
+  box-shadow: 0 22px 55px rgba(15, 23, 42, 0.9);
+}
+
+.tab:hover:not(.tab--selected) {
+  box-shadow: var(--shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  color: var(--text);
+
+}
+
+.tab-content {
+  margin-top: 16px;
+}
+
+.tab-pane {
+  animation: fadeIn 0.35s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.grid-2 {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.9fr);
+}
+
+/* Generic grid helper */
+.grid {
+  display: grid;
+}
+
+/* Two-column layout for the cards */
+.grid-2 {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); /* left slightly wider */
+  column-gap: 28px;
+  row-gap: 0;
+  align-items: start;      /* let cards keep their natural height */
+  width: 100%;
+}
+
+
+@media (max-width: 900px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CARDS */
+.card {
+  background: var(--panel);
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 55px rgba(15, 23, 42, 0.9);
+}
+
+.card-title {
+  margin: 0 0 14px 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-title i {
+  margin-right: 6px;
+}
+
+/* result card shell (right side) */
+.card.result-card {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* DROPZONE (upload) */
+.dropzone {
+  border-radius: 14px;
+  border: 1.5px dashed var(--border);
+  padding: 18px 16px;
+  background: var(--panel-2);
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.dropzone:hover {
+  border-color: var(--accent);
+  background: rgba(37, 99, 235, 0.12);
+  transform: translateY(-1px);
+}
+
+/* TEXT HELPERS */
+.muted {
+  color: var(--muted);
+}
+
+.tiny {
+  font-size: 0.75rem;
+}
+
+.note {
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.link {
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* TOGGLE ROW */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.toggle-label {
+  font-size: 0.85rem;
+}
+
+/* PROGRESS BAR */
+.progress {
+  margin-top: 10px;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.35);
+  overflow: hidden;
+  display: none;
+  /* turned on by callbacks */
+}
+
+.pbar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      rgba(34, 197, 94, 0.0),
+      rgba(34, 197, 94, 0.9),
+      rgba(56, 189, 248, 0.0));
+  animation: shimmer 1.3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-70%);
+  }
+
+  100% {
+    transform: translateX(70%);
+  }
+}
+
+/* ATTENTION BAR (render_result._bar) */
+.bar {
+  margin-top: 6px;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.8);
+  display: flex;
+  overflow: hidden;
+}
+
+.bar-part {
+  height: 100%;
+  background: linear-gradient(90deg, #f97316, #ef4444);
+}
+
+/* RESULT BLOCKS */
+.result {
+  background: var(--panel-2);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  animation: slideIn 0.25s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  color: var(--muted);
+}
+
+/* thumbnails (image/video Grad-CAM) */
+.thumbs {
+  margin-top: 6px;
+}
+
+.thumb {
+  max-height: 140px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  margin-right: 8px;
+}
+
+.thumb:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45);
+}
+
+/* FOOTER */
+.app-footer {
+  border-top: 1px solid rgba(148, 163, 184, 0.35);
+  padding: 8px 24px 16px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+.foot-left,
+.foot-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* DASH LOADING SPINNER (built-in) */
+.dash-loading[data-dash-is-loading="true"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 240px;
+}
+
+.dash-loading[data-dash-is-loading="true"] .dash-spinner {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+.dash-loading[data-dash-is-loading="true"]::after {
+  content: "Processing...";
+  margin-top: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ========================= */
+/* Clear "Processing..." state */
+/* ========================= */
+
+/* While the callback is running, Dash adds data-dash-is-loading="true"
+   to the output divs. We use that to show a big Processing message. */
+
+#audio-output[data-dash-is-loading="true"],
+#image-output[data-dash-is-loading="true"],
+#video-output[data-dash-is-loading="true"] {
+  position: relative;
+  min-height: 240px;
+  /* same as your result card height */
+}
+
+/* Hide whatever children are there while loading */
+#audio-output[data-dash-is-loading="true"]>*,
+#image-output[data-dash-is-loading="true"]>*,
+#video-output[data-dash-is-loading="true"]>* {
+  visibility: hidden;
+}
+
+/* Show overlay text instead */
+#audio-output[data-dash-is-loading="true"]::before,
+#image-output[data-dash-is-loading="true"]::before,
+#video-output[data-dash-is-loading="true"]::before {
+  content: "Processing...";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ===== Global dark scrollbar (WebKit: Chrome, Edge, Brave, etc.) ===== */
+
+/* The scrollbar itself */
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* The background track behind the thumb */
+*::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+/* The draggable thumb */
+*::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.8);
+  border-radius: 999px;
+}
+
+/* Hover state */
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(209, 213, 219, 0.95);
+}
+
+/* ===== Light theme header: blend with background ===== */
+.theme--light .app-header {
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.88),
+      rgba(248, 250, 252, 0.70),
+      rgba(248, 250, 252, 0.30),
+      rgba(248, 250, 252, 0.00));
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(209, 213, 219, 0.7);
+}

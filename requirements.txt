@@ -1,0 +1,29 @@
+# AI/ML libraries
+torch                   # PyTorch for model loading/inference
+tensorflow              # TensorFlow (if using any TF-based models)
+transformers            # HuggingFace Transformers for NLP
+
+# Audio processing
+librosa
+soundfile
+webrtcvad-wheels
+
+# Computer vision and preprocessing
+opencv-python
+mediapipe
+dlib
+
+# NLP utilities
+nltk
+spacy
+
+# Web framework
+dash                    # Dash framework for frontend
+dash-bootstrap-components  # Optional for nicer UI components
+plotly                  # For visualizations within Dash
+
+# Others
+pandas                  # For data processing
+numpy
+scikit-learn            # For possible ML utilities
+requests                # For API calls or data downloads
